@@ -19,8 +19,38 @@ def bucketize_column(df: pd.DataFrame, col_name: str, categories: list, new_colu
                 if val == cat:
                     df_copy.loc[i, new_column_name] = categories.index(cat)
                     break
+    if operator == "!=":
+        for i, val in enumerate(df_copy[col_name]):
+            for cat in categories:
+                if val != cat:
+                    df_copy.loc[i, new_column_name] = categories.index(cat)
+                    break
+    if operator == ">":
+        for i, val in enumerate(df_copy[col_name]):
+            for cat in categories:
+                if val > cat:
+                    df_copy.loc[i, new_column_name] = categories.index(cat)
+                    break
+    if operator == ">=":
+        for i, val in enumerate(df_copy[col_name]):
+            for cat in categories:
+                if val >= cat:
+                    df_copy.loc[i, new_column_name] = categories.index(cat)
+                    break
+    if operator == "<":
+        for i, val in enumerate(df_copy[col_name]):
+            for cat in categories:
+                if val < cat:
+                    df_copy.loc[i, new_column_name] = categories.index(cat)
+                    break
+    if operator == "<=":
+        for i, val in enumerate(df_copy[col_name]):
+            for cat in categories:
+                if val <= cat:
+                    df_copy.loc[i, new_column_name] = categories.index(cat)
+                    break
 
     return df_copy
 
-print(bucketize_column(df, "Age", [24, 16], "groups", "=="))
+print(bucketize_column(df, "Age", [24, 16], "groups", ">="))
 
